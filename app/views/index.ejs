@@ -1,18 +1,34 @@
  <% include  partials/header %>
 	 
+<style>
+   #html
+    {
 
+        width: 600px;
+        height: 200px;
+
+    }
+   form
+    {
+
+      margin-left: 50px;
+    }
+   
+
+</style>
 	 
-	<h3>Sample Application</h3>
+	<h3>Home Page</h3>
         
-        
-        <section>
-         Sample REST service: point browser to <a href="http://localhost:3000/rest/thing/35">http://localhost:3000/rest/thing/35</a>
-        
+      
 
-        </section>
- 
+    <form method="POST" id="imageForm" action="/snapShotService">
 
-    
+        <h5>HTML</h5>
+
+
+       <p><textarea id="html" name="html"></textarea></p>
+       <p><input name="submit" type="submit" value="debug Page View" /> <input name="submit" id="imageSubmit" type="submit" value="get Image" /></p>
+    </form>
     
 
  <% include  partials/footer %>

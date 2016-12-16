@@ -10,10 +10,8 @@ var path = require('path');
 var gutil = require('gulp-util');
 var exec = require('child_process').exec;
 var reportError = new require('./app/utils/utils')().reportError;
-var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
-var reactify = require('reactify');
 
 
 var appDependencies = require('./package.json').dependencies;
@@ -26,102 +24,7 @@ global._publicDir = publicDir;
  * the chrome livereload plugin needs to be installed
  * 
  */
-var pageURL = 'http://localhost:3000/restaurantReact.doc';
-
-/**
- * 
- * task for pre compiling sass
- */
-//gulp.task('sass', function () {
-//    gulp.src('./sass/**/*.scss')
-//            .pipe(sass().on('error', sass.logError))
-//            .pipe(concat('style.css'))
-//            // .pipe(uglifycss())
-//            .pipe(gulp.dest('./public/stylesheets/'))
-//            .on('finish', function ( ) {
-//                gutil.log("processing change in css");
-//                //   livereload.reload(pageURL);
-//            });
-//
-//});
-
-
-gulp.task('process-jsx', function () {
-    
-    var reactBundler = browserify({
-        entries: ['src/main/front-end-source/react/app.jsx'],
-        transform: [reactify],
-        extensions: ['.jsx'],
-        debug: true,
-       // entry: 'src/main/front-end-source/react/',
-        cache: {},
-        packageCache: {},
-        fullPaths: true
-    });
-    function reactBundle() {
-        return reactBundler
-                .bundle()
-                .on('error', reportError);
-
-    }
-    reactBundle()
-            .pipe(source('restaurantReact.js'))
-            //.pipe(streamify(uglify()))
-            .pipe(gulp.dest('public/js/react'));
-    
-    
-    
-    
-});
-
-
-gulp.task('react-backend', function () {
-
-    livereload.listen();
-    var reactPageUrl = 'http://localhost:3000/restaurantReact.doc';
-    
-
-    nodemon(
-            {
-                script: 'server.js',
-                 
-                // watch: ['*.js'],
-                ext: 'js css ejs jsx',
-                ignore: ['./gulpfile.js'],
-                tasks: function (changedFiles)
-                {
-                    var tasks = [];
-                  
-                    changedFiles.forEach(function (file)
-                    {
-                        gutil.log(path.basename(file));
-                        if (path.extname(file) === '.jsx' && !~tasks.indexOf('jsx'))
-                        {
-                            tasks.push('process-jsx');
-                        }
-                        //
-
-                    });
-
-                    return tasks;
-
-                }
-
-            }).on('restart', function ()
-    {
-        gutil.log('react restarted!');
-        livereload.reload(reactPageUrl);
-        livereload.reload(reactPageUrl);
-         
-    });
-});
-
-
-
-
-
-
-
+var pageURL = 'http://localhost:3000/';
 
 
  
