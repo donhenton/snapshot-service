@@ -1,1 +1,4 @@
 /bower_components/
+/node_modules/
+/nbproject/private
+.DS_Store
