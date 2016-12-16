@@ -24,6 +24,7 @@ module.exports = function (app) {
             addWidth: 0,
             addHeight: 0,
             contentType: 'image/png',
+            fileName: 'screenshot.png',
             imageType: 'png',
             renderUrl: 'http://localhost:3000/showImage/',
             viewportSize: {
@@ -55,12 +56,13 @@ module.exports = function (app) {
             }).then(status => {
 
                 return config.page.renderBase64(config.imageType);
-                ;
+                
             }).then(imageData => {
                 console.log("image success ")
                 res.set({
                     'Cache': 'no-cache',
-                    'Content-Type': config.contentType
+                    'Content-Type': config.contentType,
+                    'Content-disposition': "attachment;filename="+config.fileName
                 });
                 res.writeHead(200);
                 res.end(atob(imageData), 'binary');

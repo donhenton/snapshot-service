@@ -1,6 +1,18 @@
  <% include  partials/header %>
 	 
+<script src="js/jquery.min.js" type="text/javascript"></script>	 
+
+
 <style>
+    .loading {
+     background: url("img/ajax-loader.gif") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+     display: inline-block;
+     visibility:hidden;
+     height: 50px;
+     margin-left: 20px;
+     width: 100px;
+}
+
    #html
     {
 
@@ -25,10 +37,17 @@
 
         <h5>HTML</h5>
 
-
+<p><input name="submit" type="submit" value="debug Page View" /></p>
        <p><textarea id="html" name="html"></textarea></p>
-       <p><input name="submit" type="submit" value="debug Page View" /> <input name="submit" id="imageSubmit" type="submit" value="get Image" /></p>
-    </form>
-    
+       
 
+
+
+    </form>
+    <p><button onClick="doDownLoad()">Download Image</button> <span id="loader" class="loading">   </p>
+
+
+<script src="js/code.js" type="text/javascript"></script>
  <% include  partials/footer %>
+
+	
