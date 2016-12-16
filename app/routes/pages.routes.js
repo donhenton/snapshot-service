@@ -18,6 +18,15 @@ module.exports = function (app,imageService) {
     {
         return inputHtml;
     }
+    
+    /**
+     * the actual display code that creates the page for both
+     * the debug display and the image capture
+     * 
+     * @param {type} req
+     * @param {type} res
+     * @returns {undefined}
+     */
     function showPageForImage(req, res)
     {
 
