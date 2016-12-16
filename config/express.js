@@ -28,7 +28,8 @@ module.exports = function () {
     // Set the application view engine and 'views' folder
     app.set('views', './app/views');
     app.set('view engine', 'ejs');
-    require('../app/routes/pages.routes.js')(app);
+    var imageService = require("./../app/services/imageService")(config);
+    require('../app/routes/pages.routes.js')(app, imageService);
 
     var clientErrorProcessor = require('../app/filters/clientErrorProcessor');
     var generalErrorProcessor = require('../app/filters/generalErrorProcessor');
