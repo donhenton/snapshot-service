@@ -70,6 +70,9 @@ function doDownLoad()
             window.alert(" error status "+this.status);
         }
     };
+    
+    
+     //xhr.setRequestHeader('Content-Security-Policy', 'base-uri http://localhost:3000  https://donhenton-springmvc3.herokuapp.com');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
    // xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(params);

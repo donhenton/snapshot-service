@@ -105,14 +105,19 @@ module.exports = function (app) {
 
     }
 
+    /**
+     * could be used to manipulate the submission
+     * @param {type} inputHtml
+     * @returns {unresolved}
+     */
     function composeHtml(inputHtml)
     {
-        var head = "<head><style> #message { color:red  }</style></head>";
+        //var head = "<head><style> #message { color:red  }</style></head>";
         //var html = "the man says <span id=\"message\">\"get a job!!!!!\"</span>";
         //html =  html.replace(/"/g, "\\\"");
-        var html = "<html>" + head + "<body>" + inputHtml + "</body></html>";
+        //var html = "<html>" + head + "<body>" + inputHtml + "</body></html>";
 
-        return html;
+        return inputHtml;
     }
     function showPageForImage(req, res)
     {
@@ -121,7 +126,11 @@ module.exports = function (app) {
 
         //you want to see the test page
         res.setHeader("Content-Type", "text/html");
-        res.writeHead(200);
+        //res.setHeader('Content-Security-Policy', 'default-src *');
+        //needed for the test display in chrome only
+        
+        res.setHeader("X-XSS-Protection", "0");
+        //res.writeHead(200);
         var html = composeHtml(req.body.html);
         res.end(html);
     }
