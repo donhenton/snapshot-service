@@ -51,12 +51,7 @@ module.exports = function (app) {
                 page.property('viewportSize', config.viewportSize);
                 page.clipRect = config.clipRect;
                 config['page'] = page;
-                //https://uggedal.com/journal/phantomjs-default-background-color/
-
-
-
-
-                return page.open(config.renderUrl, 'post', "html=" + config.html);
+                 return page.open(config.renderUrl, 'post', "html=" + config.html);
 
             }).then(status => {
                // https://uggedal.com/journal/phantomjs-default-background-color/
@@ -66,7 +61,7 @@ module.exports = function (app) {
                     style.setAttribute('type', 'text/css');
                     style.appendChild(text);
                     document.head.insertBefore(style, document.head.firstChild);
-                   // document.body.bgColor = 'white';
+                    
                 });
                 return config.page.renderBase64(config.imageType);
 
@@ -112,25 +107,16 @@ module.exports = function (app) {
      */
     function composeHtml(inputHtml)
     {
-        //var head = "<head><style> #message { color:red  }</style></head>";
-        //var html = "the man says <span id=\"message\">\"get a job!!!!!\"</span>";
-        //html =  html.replace(/"/g, "\\\"");
-        //var html = "<html>" + head + "<body>" + inputHtml + "</body></html>";
-
         return inputHtml;
     }
     function showPageForImage(req, res)
     {
 
-        //console.log(JSON.stringify(req.body.html))
-
         //you want to see the test page
         res.setHeader("Content-Type", "text/html");
-        //res.setHeader('Content-Security-Policy', 'default-src *');
-        //needed for the test display in chrome only
-        
+        //needed for the test display in chrome only       
         res.setHeader("X-XSS-Protection", "0");
-        //res.writeHead(200);
+        res.writeHead(200);
         var html = composeHtml(req.body.html);
         res.end(html);
     }
