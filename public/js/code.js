@@ -3,7 +3,9 @@ function doDownLoad()
 
     var xhr = new XMLHttpRequest();
     xhr.open('POST', "http://localhost:3000/snapShotService", true);
-    var params = 'html=<h1>Get a Job, bozo!!!</h1>';
+    
+    var params = 'html='+ $('#html').val();
+  //  console.log("params "+params)
      $('#loader').css({"visibility":"visible"})
     xhr.responseType = 'arraybuffer';
     xhr.addEventListener("loadend", function ()

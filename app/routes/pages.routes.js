@@ -10,13 +10,13 @@ module.exports = function (app) {
 
     });
 
-/**
- * process the image and perform the screenshot.
- * 
- * @param {type} req
- * @param {type} res
- * @returns {undefined}
- */
+    /**
+     * process the image and perform the screenshot.
+     * 
+     * @param {type} req
+     * @param {type} res
+     * @returns {undefined}
+     */
     function processImage(req, res)
     {
 
@@ -51,18 +51,31 @@ module.exports = function (app) {
                 page.property('viewportSize', config.viewportSize);
                 page.clipRect = config.clipRect;
                 config['page'] = page;
+                //https://uggedal.com/journal/phantomjs-default-background-color/
+
+
+
+
                 return page.open(config.renderUrl, 'post', "html=" + config.html);
 
             }).then(status => {
-
+                https://uggedal.com/journal/phantomjs-default-background-color/
+                config.page.evaluate(function () {
+                    var style = document.createElement('style'),
+                            text = document.createTextNode('body { background: #fff }');
+                    style.setAttribute('type', 'text/css');
+                    style.appendChild(text);
+                    document.head.insertBefore(style, document.head.firstChild);
+                   // document.body.bgColor = 'white';
+                });
                 return config.page.renderBase64(config.imageType);
-                
+
             }).then(imageData => {
                 console.log("image success ")
                 res.set({
                     'Cache': 'no-cache',
                     'Content-Type': config.contentType,
-                    'Content-disposition': "attachment;filename="+config.fileName
+                    'Content-disposition': "attachment;filename=" + config.fileName
                 });
                 res.writeHead(200);
                 res.end(atob(imageData), 'binary');
