@@ -59,7 +59,7 @@ module.exports = function (app) {
                 return page.open(config.renderUrl, 'post', "html=" + config.html);
 
             }).then(status => {
-                https://uggedal.com/journal/phantomjs-default-background-color/
+               // https://uggedal.com/journal/phantomjs-default-background-color/
                 config.page.evaluate(function () {
                     var style = document.createElement('style'),
                             text = document.createTextNode('body { background: #fff }');
