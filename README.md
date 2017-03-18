@@ -23,7 +23,7 @@ base tag to get relative urls to resolve.
 The form at http://localhost:3000 has two buttons, one to navigate to the
 page that will be rendered, and one to download the image of that page.
 
-##Chrome view of the debug
+## Chrome view of the debug
 Chrome browser will strip any absolute hrefs in a base tag, which is 
 addressed in pages.routes here:
 ```
