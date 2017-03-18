@@ -10,7 +10,7 @@ http://localhost:3000 includes the form page
 
 ## Requirements
 The server will render what is sent, so to handle css, js, images, etc
-use the <base> tag, the submitting system is responsible for setting that
+use the &lt;base&gt; tag, the submitting system is responsible for setting that
 tag if it is not set already. 
 
 Overall, the submitting entity is responsible for making this service
