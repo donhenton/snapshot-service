@@ -16,8 +16,7 @@ tag if it is not set already.
 Overall, the submitting entity is responsible for making this service
 aware of all resources needed to render the image. So if a 'special' page
 is needed, the submitter composes the needed html. A special page might
-contain css references that make the submission usable. It can use the  
-base tag to get relative urls to resolve.
+contain css references that make the submission usable. It can use the  base tag to get relative urls to resolve.
 
 ## The submission form sample
 The form at http://localhost:3000 has two buttons, one to navigate to a
